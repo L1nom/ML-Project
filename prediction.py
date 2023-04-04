@@ -11,7 +11,7 @@ import streamlit as st
 
 st.set_page_config(page_title="Streamlit-HWR", layout="wide")
 
-NN_Model = tf.keras.models.load_model('Models/nn_model')
+NN_Model = tf.keras.models.load_model('Models/nn_model.h5')
 
 with open("Models/DT_Model.pkl", 'rb') as file:  
     DT_Model = pickle.load(file)
@@ -30,8 +30,8 @@ sc = MinMaxScaler()
 with open('scaler.pkl', 'rb') as file:  
     sc = pickle.load(file)
 
-
-API_KEY = os.environ.get('API_KEY')
+load_dotenv()
+API_KEY = os.getenv('API_KEY')
 watcher = LolWatcher(API_KEY)
 region = 'NA1' 
 
